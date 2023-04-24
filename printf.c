@@ -1,52 +1,62 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
- *_printf - prints a string to stdout
+ * _printf - Custom printf implementation that supports %c, %s, %d, and %i format specifiers.
  *
- * @format: string that is passed with specifiers
+ * @format: The format string.
  *
- * Return: Returns length of string
+ * Return: The number of characters printed (excluding the null byte used to end output to strings).
  */
 
 int _printf(const char *format, ...)
 {
-    int count = 0;
     va_list args;
+    int len = 0;
+
     va_start(args, format);
+
     while (*format)
     {
         if (*format == '%')
         {
             format++;
-            if (*format == 'c')
+            switch (*format)
             {
-                int c = va_arg(args, int);
-                putchar(c);
-                count++;
-            }
-            else if (*format == 's')
-            {
-                char *s = va_arg(args, char *);
-                while (*s)
-                {
-                    putchar(*s);
-                    s++;
-                    count++;
-                }
-            }
-            else if (*format == '%')
-            {
-                putchar('%');
-                count++;
+                case 'c':
+                    len += putchar(va_arg(args, int));
+                    break;
+
+                case 's':
+                    len += printf("%s", va_arg(args, char *));
+                    break;
+
+                case '%':
+                    len += _putchar('%');
+                    break;
+
+                case 'd':
+                case 'i':
+                    len += printf("%d", va_arg(args, int));
+                    break;
+
+                default:
+                    _putchar('%');
+                    _putchar(*format);
+                    len += 2;
+                    break;
             }
         }
         else
         {
-            putchar(*format);
-            count++;
+            _putchar(*format);
+            len++;
         }
         format++;
     }
+
     va_end(args);
-    return count;
+
+    return len;
 }
