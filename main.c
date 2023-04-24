@@ -7,6 +7,6 @@
  */
 int main(void)
 {
-    _printf("%s\n", "Hellow WOrld");
+   _printf("%s\n", "Hellow WOrld");
     return (0);
 }
