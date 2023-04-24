@@ -19,6 +19,7 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 int _puts(char *str);
 int _print_num(int n);
+int _print_str(char *str);
 int print_char(va_list args);
 int print_string(va_list args);
 int print_int(va_list args);
