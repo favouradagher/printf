@@ -3,62 +3,55 @@
 #include <unistd.h>
 
 /**
- * _printf - prints output according to a format.
- * @format: The format string
+ * _printf - print output according to a format
+ * @format: format string
  *
- * Return: The number of characters printed.
+ * Return: number of characters printed (excluding null byte)
  */
 int _printf(const char *format, ...)
 {
-    va_list arg;
-    int i, count = 0;
-    char *str;
+	va_list args;
+	int count = 0;
 
-    va_start(arg, format);
+	va_start(args, format);
 
-    for (i = 0; format && format[i]; i++)
-    {
-        if (format[i] == '%')
-        {
-            switch (format[++i])
-            {
-                case 'c':
-                    _putchar(va_arg(arg, int));
-                    count++;
-                    break;
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			switch (*format)
+			{
+			case 'c':
+				_putchar(va_arg(args, int));
+				count++;
+				break;
+			case 's':
+				count += _print_str(va_arg(args, char *));
+				break;
+			case 'd':
+			case 'i':
+				count += _print_num(va_arg(args, int));
+				break;
+			case '%':
+				_putchar('%');
+				count++;
+				break;
+			default:
+				_putchar('%');
+				_putchar(*format);
+				count += 2;
+				break;
+			}
+		}
+		else
+		{
+			_putchar(*format);
+			count++;
+		}
+		format++;
+	}
 
-                case 's':
-                    str = va_arg(arg, char *);
-                    if (str == NULL)
-                        str = "(null)";
-                    while (*str)
-                    {
-                        _putchar(*str++);
-                        count++;
-                    }
-                    break;
-
-                case '%':
-                    _putchar('%');
-                    count++;
-                    break;
-
-                default:
-                    _putchar('%');
-                    _putchar(format[i]);
-                    count += 2;
-                    break;
-            }
-        }
-        else
-        {
-            _putchar(format[i]);
-            count++;
-        }
-    }
-
-    va_end(arg);
-
-    return (count);
+	va_end(args);
+	return (count);
 }
-
