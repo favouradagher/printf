@@ -1,62 +1,51 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
 
 /**
- * _printf - Custom printf implementation that supports %c, %s, %d, and %i format specifiers.
+ * _printf - produces output according to a format
+ * @format: format string containing directives
+ * @...: additional arguments to be printed according to format
  *
- * @format: The format string.
- *
- * Return: The number of characters printed (excluding the null byte used to end output to strings).
+ * Return: the number of characters printed (excluding the null byte used to end output to strings)
  */
-
 int _printf(const char *format, ...)
 {
-    va_list args;
-    int len = 0;
+	va_list args;
+	int len = 0;
 
-    va_start(args, format);
+	va_start(args, format);
 
-    while (*format)
-    {
-        if (*format == '%')
-        {
-            format++;
-            switch (*format)
-            {
-                case 'c':
-                    len += putchar(va_arg(args, int));
-                    break;
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			switch (*format)
+			{
+				case 'c':
+					len += _putchar(va_arg(args, int));
+					break;
+				case 's':
+					len += _puts(va_arg(args, char *));
+					break;
+				case '%':
+					len += _putchar('%');
+					break;
+				case 'd':
+				case 'i':
+					len += _print_number(va_arg(args, int));
+					break;
+				default:
+					len += _putchar('%') + _putchar(*format);
+					break;
+			}
+		}
+		else
+			len += _putchar(*format);
 
-                case 's':
-                    len += printf("%s", va_arg(args, char *));
-                    break;
+		format++;
+	}
 
-                case '%':
-                    len += _putchar('%');
-                    break;
+	va_end(args);
 
-                case 'd':
-                case 'i':
-                    len += printf("%d", va_arg(args, int));
-                    break;
-
-                default:
-                    _putchar('%');
-                    _putchar(*format);
-                    len += 2;
-                    break;
-            }
-        }
-        else
-        {
-            _putchar(*format);
-            len++;
-        }
-        format++;
-    }
-
-    va_end(args);
-
-    return len;
+	return (len);
 }
