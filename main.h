@@ -22,11 +22,11 @@
  * @type: The format type
  * @fn: The function to print this format
  */
-typedef struct print_fmt
+/*typedef struct print_fmt
 {
 	char *type;
 	int (*fn)(va_list, params_t *);
-} print_fmt_t;
+} print_fmt_t;*/
 /**
  * struct parameters - parameters struct
  * @unsign: flag if unsigned value
@@ -58,6 +58,17 @@ typedef struct parameters
 	unsigned int h_modifier : 1;
 	unsigned int l_modifier : 1;
 } params_t;
+
+/**
+ * struct specifier - Struct token
+ * @specifier: The format type
+ * @f: The function associated
+ */
+typedef struct specifier
+{
+       	char *specifier;
+	int (*f)(va_list, params_t *);
+ } specifier_t;
 
 /*_printf.c module*/
 int _printf(const char *format, ...);
