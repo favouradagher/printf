@@ -86,8 +86,8 @@ char get_width(char *s, params_t *params, va_list ap);
 
 /*convert_number.c module*/
 int print_octal(va_list ap, params_t *params);
-int print_hex_low(va_list ap, params_t *params);
-int print_hex_up(va_list ap, params_t *params);
+int print_hex(va_list ap, params_t *params);
+int print_HEX(va_list ap, params_t *params);
 int print_binary(va_list ap, params_t *params);
 
 /*simple_printers.c module*/
