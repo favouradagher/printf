@@ -94,7 +94,8 @@ int get_print_func(char *s, va_list ap, params_t *params);
 int get_flag(char *s, params_t *params);
 int get_modifier(char *s, params_t *params);
 char get_width(char *s, params_t *params, va_list ap);
-
+int _print_special_str(char *str);
+int _print_hex(unsigned int n);
 /*convert_number.c module*/
 int print_octal(va_list ap, params_t *params);
 int print_hex(va_list ap, params_t *params);
