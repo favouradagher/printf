@@ -23,4 +23,11 @@ int _print_string(va_list args);
 int _printf(const char *format, ...);
 int _print_special_str(char *str);
 int _print_hex(unsigned int n);
+int _print_str(char *s);
+int _print_num(int n);
+int _print_hexadecimal(unsigned int n, int uppercase);
+int _print_octal(unsigned int n);
+int _print_unsigned(unsigned int n);
+int _print_pointer(void *p);
+int _print_binary(unsigned int n);
 #endif /*MAIN_H*/
