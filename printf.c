@@ -6,6 +6,7 @@
  *
  * Return: the number of characters printed
  */
+
 int _printf(const char *format, ...)
 {
     int count = 0, i = 0, printed_chars = 0;
@@ -39,7 +40,7 @@ int _printf(const char *format, ...)
             else if (format[i] == 'u')
                 count += _print_unsigned(va_arg(args, unsigned int));
             else if (format[i] == 'p')
-                count += _print_pointer(va_arg(args, void *));
+                count += print_address(args);
             else if (format[i] == 'S')
                 count += _print_special_str(va_arg(args, char *));
             else
@@ -55,3 +56,4 @@ int _printf(const char *format, ...)
 
     return (count);
 }
+

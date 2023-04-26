@@ -30,4 +30,5 @@ int _print_octal(unsigned int n);
 int _print_unsigned(unsigned int n);
 int _print_pointer(void *p);
 int _print_binary(unsigned int n);
+int print_address(va_list args);
 #endif /*MAIN_H*/
