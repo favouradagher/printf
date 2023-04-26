@@ -3,6 +3,7 @@
 
 #include <stdarg.h>
 #include <unistd.h>
+#include <stdlib.h>
 
 /**
  * struct print_fmt - Struct to define a print format
@@ -31,4 +32,5 @@ int _print_unsigned(unsigned int n);
 int _print_pointer(void *p);
 int _print_binary(unsigned int n);
 int print_address(va_list args);
+void print_plus_space_hash(const char *format, int *i, char flag, int *len, int is_negative);
 #endif /*MAIN_H*/
