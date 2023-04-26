@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * _printf - produces output according to a format
  * @format: a string containing zero or more directives
