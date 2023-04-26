@@ -1,12 +1,10 @@
 #include "main.h"
 
-/**
- * main - Entry point
- *
- * Return: Always 0
- */
 int main(void)
 {
-	_printf("%S\n", "Best\nSchool");
-	return (0);
+	_printf("%c\n", 'a');
+	_printf("%s\n", "Hello World");
+	_printf("%%\n");
 }
+
+

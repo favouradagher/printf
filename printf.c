@@ -1,59 +1,50 @@
 #include "main.h"
-#include <stdarg.h>
-#include <unistd.h>
 
 /**
  * _printf - prints output according to a format
- * @format: the format string to print
+ * @format: The format string
  *
- * Return: the number of characters printed
+ * Return: The number of characters printed
  */
-
 int _printf(const char *format, ...)
 {
-    int i = 0, count = 0;
+    int count = 0;
     va_list args;
 
     va_start(args, format);
 
-    while (format && format[i])
+    while (*format != '\0')
     {
-        if (format[i] == '%')
+        if (*format == '%')
         {
-            i++;
-            switch (format[i])
+            format++;
+            switch (*format)
             {
                 case 'c':
-                    count += _putchar(va_arg(args, int));
+                    count += _print_char(args);
                     break;
                 case 's':
-                    count += _print_str(va_arg(args, char *));
+                    count += _print_string(args);
                     break;
                 case '%':
-                    count += _putchar('%');
-                    break;
-                case 'd':
-                case 'i':
-                    count += _print_num(va_arg(args, int));
-                    break;
-                case 'b':
-                    count += _print_binary(va_arg(args, unsigned int));
+                    _putchar('%');
+                    count++;
                     break;
                 default:
-                    count += _putchar('%');
-                    count += _putchar(format[i]);
-                    break;
+                    _putchar('%');
+                    _putchar(*format);
+                    count += 2;
             }
         }
         else
         {
-            count += _putchar(format[i]);
+            _putchar(*format);
+            count++;
         }
-        i++;
+        format++;
     }
 
     va_end(args);
 
     return (count);
 }
-
