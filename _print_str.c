@@ -1,21 +1,17 @@
 #include "main.h"
 
 /**
- * _print_str - prints a string to the standard output
- * @str: the string to print
+ * _print_str - print a string
+ * @s: the string to print
  *
  * Return: the number of characters printed
  */
-int _print_str(char *str)
+int _print_str(char *s)
 {
-        int count = 0;
+    int i, count = 0;
 
-        while (*str)
-        {
-                _putchar(*str++);
-                count++;
-        }
+    for (i = 0; s[i] != '\0'; i++)
+        count += _putchar(s[i]);
 
-        return (count);
+    return (count);
 }
-

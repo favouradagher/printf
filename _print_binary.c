@@ -1,8 +1,8 @@
 #include "main.h"
 
 /**
- * _print_binary - prints the binary representation of an unsigned int
- * @n: the unsigned int to print in binary
+ * _print_binary - print an unsigned int in binary notation
+ * @n: the unsigned int to print
  *
  * Return: the number of characters printed
  */
@@ -12,9 +12,7 @@ int _print_binary(unsigned int n)
 
     if (n / 2)
         count += _print_binary(n / 2);
-
-    count += _putchar('0' + n % 2);
+    count += _putchar(n % 2 + '0');
 
     return (count);
 }
-
